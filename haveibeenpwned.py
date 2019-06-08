@@ -10,6 +10,7 @@
 import requests
 import time 
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(description="Verify if email address has been pwned")
 parser.add_argument("-a", dest="address",
@@ -34,7 +35,6 @@ ENDC = '\033[0m'
 
 address = str(args.address)
 filename = str(args.filename)
-lstEmail = ["info@example.com","example@example.com"]
 
 def main():
     if address != "None":
@@ -44,8 +44,8 @@ def main():
         for email in email:
             checkAddress(email)
     else:
-        for email in lstEmail:
-            checkAddress(email)
+         parser.print_help()
+         sys.exit(0)
 
 def checkAddress(email):
     sleep = rate # Reset default acceptable rate
